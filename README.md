@@ -9,10 +9,12 @@ C++ and python implementation of [YOLOv9](https://github.com/WongKinYiu/yolov9) 
 ## 🤖 Model
 
 - Download yolov9-c openvino model: [yolov9-c-converted](https://drive.google.com/file/d/1eBs2zlPmPoa-K2N4enTG3srXmesKQyM9/view?usp=sharing)
-- Convert your custom model:
+- Or convert your custom model:
 ``` shell
 ovc yolov9-c-converted.onnx --compress_to_fp16 True --input images[1,3,640,640]
 ```
+ovc is a command-line model converter that converts trained model files to OpenVINO IR, which can then be read, compiled, and run by the final inference application.
+
 
 ## ⚙️ Build
 
