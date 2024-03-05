@@ -13,11 +13,13 @@ Note that this repository is only for model inference using openvino. Therefore,
 
 ## Setup
 
-Python:
+**Python:**
 ``` shell
 pip install openvino
 ```
-CPP:
+
+**CPP:**
+
 Follow this installation guide: [guide](https://docs.openvino.ai/2023.3/openvino_docs_install_guides_installing_openvino_from_archive_windows.html)
 
 ## Usage:
