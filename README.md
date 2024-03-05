@@ -61,7 +61,7 @@ python main.py --model=yolov9-c-converted.xml --data_path=test.mp4
 
 ## 🖥️ Requirement
 
-- 2023.3.0 openvino API
+- OpenVINO™ 2023.3.0
 - OpenCV
 
 ## 🔗 Acknowledgement
