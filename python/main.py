@@ -93,7 +93,7 @@ class Yolov9:
         class_ids = []
         confidences = []
         for prediction in detections:
-            classes_scores = prediction[5:]
+            classes_scores = prediction[4:]
             _, _, _, max_indx = cv2.minMaxLoc(classes_scores)
             class_id = max_indx[1]
             if (classes_scores[class_id] > self.conf_thresh):
@@ -124,10 +124,10 @@ class Yolov9:
 
             rx = img.shape[1] / (self.input_width - dw)
             ry = img.shape[0] / (self.input_height - dh)
-            box[0] = int(rx * box[0])
-            box[1] = int(ry * box[1])
-            box[2] = int(rx * box[2])
-            box[3] = int(ry * box[3])
+            box[0] = rx * box[0]
+            box[1] = ry * box[1]
+            box[2] = rx * box[2]
+            box[3] = ry * box[3]
 
             xmax = box[0] + box[2]
             ymax = box[1] + box[3]
@@ -156,9 +156,8 @@ def main( ):
     img_resized, dw, dh = model.resize_and_pad(img)
     results = model.predict(img_resized)
     model.draw(img, results, dw, dh)
-
-
-    cv2.imshow("./detection_python.png", img)
+    
+    cv2.imshow("result", img)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 
