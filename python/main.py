@@ -9,9 +9,8 @@ import numpy as np
 import cv2
 
 
-SCORE_THRESHOLD = 0.2
 NMS_THRESHOLD = 0.4
-CONFIDENCE_THRESHOLD = 0.4
+CONFIDENCE_THRESHOLD = 0.2
 
 
 def resize_and_pad(image, new_shape):
@@ -35,11 +34,11 @@ def main( ):
     # Step 1. Initialize OpenVINO Runtime core
     core = ov.Core()
     # Step 2. Read a model
-    model = core.read_model(str(Path("../model/yolov5n.xml")))
+    model = core.read_model(str(Path("./model/yolov9-c-converted.xml")))
 
    
     # Step 3. Read input image
-    img = cv2.imread(str(Path("../imgs/000000000312.jpg")))
+    img = cv2.imread(str(Path("./000000000312.jpg")))
     # resize image
     img_resized, dw, dh = resize_and_pad(img, (640, 640))
 
@@ -70,7 +69,9 @@ def main( ):
 
     # Step 7. Retrieve inference results 
     output = infer_request.get_output_tensor()
-    detections = output.data[0]
+    detections = output.data[0].T
+    print(detections.shape)
+    # detections : (84, 8400)
 
 
     # Step 8. Postprocessing including NMS  
@@ -78,19 +79,17 @@ def main( ):
     class_ids = []
     confidences = []
     for prediction in detections:
-        confidence = prediction[4].item()
-        if confidence >= CONFIDENCE_THRESHOLD:
-            classes_scores = prediction[5:]
-            _, _, _, max_indx = cv2.minMaxLoc(classes_scores)
-            class_id = max_indx[1]
-            if (classes_scores[class_id] > .25):
-                confidences.append(confidence)
-                class_ids.append(class_id)
-                x, y, w, h = prediction[0].item(), prediction[1].item(), prediction[2].item(), prediction[3].item()
-                xmin = x - (w / 2)
-                ymin = y - (h / 2)
-                box = np.array([xmin, ymin, w, h])
-                boxes.append(box)
+        classes_scores = prediction[5:]
+        _, _, _, max_indx = cv2.minMaxLoc(classes_scores)
+        class_id = max_indx[1]
+        if (classes_scores[class_id] > CONFIDENCE_THRESHOLD):
+            confidences.append(classes_scores[class_id])
+            class_ids.append(class_id)
+            x, y, w, h = prediction[0].item(), prediction[1].item(), prediction[2].item(), prediction[3].item()
+            xmin = x - (w / 2)
+            ymin = y - (h / 2)
+            box = np.array([xmin, ymin, w, h])
+            boxes.append(box)
 
     indexes = cv2.dnn.NMSBoxes(boxes, confidences, SCORE_THRESHOLD, NMS_THRESHOLD)
 
@@ -120,8 +119,9 @@ def main( ):
         img = cv2.rectangle(img, (int(box[0]), int(box[1])), (int(xmax), int(ymax)), (0, 255, 0), 3)
         img = cv2.rectangle(img, (int(box[0]), int(box[1]) - 20), (int(xmax), int(box[1])), (0, 255, 0), cv2.FILLED)
         img = cv2.putText(img, str(classId), (int(box[0]), int(box[1]) - 5), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 0))
-    cv2.imwrite("./detection_python.png", img)
-    
-if __name__ == '__main__':
+    cv2.imshow("./detection_python.png", img)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
 
+if __name__ == '__main__':
     main( )
