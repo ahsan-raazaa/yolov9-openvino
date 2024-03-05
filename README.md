@@ -62,12 +62,14 @@ pip install -r requirements.txt
 Then run the script:
 ```
 python main.py
-
-### Setup
-
-Openvino Installation Guide : https://docs.openvino.ai/2023.3/openvino_docs_install_guides_installing_openvino_from_archive_windows.html
 ```
 
 ## Final Result:
 
 ![IMAGE_DESCRIPTION](./imgs/result.png)
+
+
+
+### Setup
+
+Openvino Installation Guide : https://docs.openvino.ai/2023.3/openvino_docs_install_guides_installing_openvino_from_archive_windows.html
