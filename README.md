@@ -6,11 +6,9 @@ Implementation of YOLOv9 using Openvino Backend [YOLOv9](https://github.com/Wong
 
 Download [yolov9-c-converted](https://drive.google.com/file/d/1eBs2zlPmPoa-K2N4enTG3srXmesKQyM9/view?usp=sharing)
 
-This repository is only for model inference using openvino. Therefore, it assumes the YOLOv5 model is already trained and exported to openvino (.bin, .xml) format. 
+This repository is only for model inference using openvino. Therefore, it assumes the YOLOv9 model is already trained and exported to openvino (.bin, .xml) format. 
 
 ## Cpp
-
-
 
 
 
