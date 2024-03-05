@@ -46,3 +46,6 @@ Todo
 ### Requirement
 - 2023.3.0 openvino API
 - OpenCV
+
+  ## Acknowledgement
+  Based on https://github.com/dacquaviva/yolov5-openvino-cpp-python
