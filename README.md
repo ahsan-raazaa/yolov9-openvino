@@ -8,8 +8,8 @@ C++ and python implementation of [YOLOv9](https://github.com/WongKinYiu/yolov9) 
 
 ## 🤖 Model
 
-1. Download the converted model: [yolov9-c-converted](https://drive.google.com/file/d/1eBs2zlPmPoa-K2N4enTG3srXmesKQyM9/view?usp=sharing)
-2. Convert your custom model:
+- Download the converted model: [yolov9-c-converted](https://drive.google.com/file/d/1eBs2zlPmPoa-K2N4enTG3srXmesKQyM9/view?usp=sharing)
+- Convert your custom model:
 ``` shell
 ovc yolov9-c-converted.onnx --compress_to_fp16 True --input images[1,3,640,640]
 ```
