@@ -26,7 +26,7 @@ Follow this installation guide: [guide](https://docs.openvino.ai/2023.3/openvino
 
 **CPP:**
 ``` shell
-yolov9-openvino-cpp.exe <model path> <data> <confidence threshold> <nms threshold>
+yolov9-openvino-cpp.exe <xml model path> <data> <confidence threshold> <nms threshold>
 
 # infer an image
 yolov9-openvino-cpp.exe yolov9-c.engine test.jpg 
