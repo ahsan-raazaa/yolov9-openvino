@@ -15,7 +15,7 @@ ovc yolov9-c-converted.onnx --compress_to_fp16 True --input images[1,3,640,640]
 ```
 Note that this repository is only for model inference using openvino. Therefore, it assumes the YOLOv9 model is already trained and exported to openvino (.bin, .xml) format. `ocv` can be installed using `pip` command below.
 
-## Setup
+## ⚙️ Setup
 
 **Python:**
 ``` shell
@@ -26,7 +26,7 @@ pip install openvino
 
 Follow this installation guide: [guide](https://docs.openvino.ai/2023.3/openvino_docs_install_guides_installing_openvino_from_archive_windows.html)
 
-## Usage:
+## 🚀 Usage:
 
 **CPP:**
 ``` shell
