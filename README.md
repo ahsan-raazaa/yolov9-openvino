@@ -27,12 +27,12 @@ ovc yolov9-c-converted.onnx --compress_to_fp16 True --input images[1,3,640,640]
 Usage:
 
 ``` shell
-cd build/release
+yolov9-openvino-cpp.exe <model path> <data> <confidence threshold> <nms threshold>
 
 # infer an image
-yolov9-tensorrt.exe yolov9-c.engine test.jpg
+yolov9-openvino-cpp.exe yolov9-c.engine test.jpg 
 # infer a folder(images)
-yolov9-tensorrt.exe yolov9-c.engine data
+yolov9-openvino-cpp.exe yolov9-c.engine data
 # infer a video
-yolov9-tensorrt.exe yolov9-c.engine test.mp4 # the video path
+yolov9-openvino-cpp.exe yolov9-c.engine test.mp4 # the video path
 ```
