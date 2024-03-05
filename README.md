@@ -74,5 +74,7 @@ python main.py
 
 Openvino Installation Guide : https://docs.openvino.ai/2023.3/openvino_docs_install_guides_installing_openvino_from_archive_windows.html
 ``` shell
+pip install openvino
+
 ovc yolov9-c-converted.onnx --compress_to_fp16 True --input images[1,3,640,640]
 ```
