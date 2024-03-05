@@ -45,8 +45,6 @@ make
 **Python:**
 
 ``` shell
-cd python
-
 # infer an image
 python main.py --model=yolov9-c-converted.xml --data_path=test.jpg
 # infer a folder(images)
