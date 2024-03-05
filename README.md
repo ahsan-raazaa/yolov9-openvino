@@ -33,6 +33,7 @@ pip install -r requirement.txt
 2. Cmake build
 
 ``` shell
+cd cpp
 mkdir build
 cd build
 cmake ..
