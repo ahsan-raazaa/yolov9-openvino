@@ -1,6 +1,6 @@
 <h1 align="center"><span>YOLOv9-Openvino</span></h1>
 
-Implementation of YOLOv9 using Openvino Backend [YOLOv9](https://github.com/WongKinYiu/yolov9)  in C++ as well as python.
+C++ and python implementation of [YOLOv9](https://github.com/WongKinYiu/yolov9) using Openvino Backend.
 
 <p align="center" margin: 0 auto;>
   <img src="imgs/result.jpg"/>
