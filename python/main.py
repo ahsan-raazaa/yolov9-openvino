@@ -7,6 +7,8 @@ from openvino.runtime import Layout, Type
 
 import numpy as np
 import cv2
+import argparse
+import os
 
 coconame = [
     "person",         "bicycle",    "car",           "motorcycle",    "airplane",     "bus",           "train",
@@ -21,7 +23,6 @@ coconame = [
     "laptop",         "mouse",      "remote",        "keyboard",      "cell phone",   "microwave",     "oven",
     "toaster",        "sink",       "refrigerator",  "book",          "clock",        "vase",          "scissors",
     "teddy bear",     "hair drier", "toothbrush" ]
-
 
 
 class Yolov9:
@@ -133,7 +134,6 @@ class Yolov9:
             ymax = box[1] + box[3]
 
             # Drawing detection box
-            print(self.colors[classId])
             cv2.rectangle(img, (int(box[0]), int(box[1])), (int(xmax), int(ymax)), tuple(map(int, self.colors[classId])), 3)
 
             # Detection box text
@@ -146,21 +146,87 @@ class Yolov9:
                 tuple(map(int, self.colors[classId])), cv2.FILLED)
             cv2.putText(img, class_string, (int(box[0] + 5), int(box[1] - 10)), cv2.FONT_HERSHEY_DUPLEX, 1, (0, 0, 0), 2, cv2.LINE_AA)
 
+def make_parser():
+    parser = argparse.ArgumentParser("onnxruntime inference")
+    parser.add_argument(
+        "-m",
+        "--model",
+        type=str,
+        default="yolov9-c-converted.onnx",
+        help="Input your onnx model.",
+    )
+    parser.add_argument(
+        "-i",
+        "--data_path",
+        type=str,
+        default='videos/palace.mp4',
+        help="Path to your input image.",
+    )
+    parser.add_argument(
+        "-s",
+        "--score_thr",
+        type=float,
+        default=0.1,
+        help="Score threshould to filter the result.",
+    )
+    parser.add_argument(
+        "-n",
+        "--nms_thr",
+        type=float,
+        default=0.3,
+        help="NMS threshould.",
+    )
+    
+    return parser
 
-def main( ):
-
-    model = Yolov9("./model/yolov9-c-converted.xml")
-
-    img = cv2.imread("./000000000312.jpg")
-
+# Process a single image
+def process_image(model, image_path):
+    img = cv2.imread(image_path)
     img_resized, dw, dh = model.resize_and_pad(img)
     results = model.predict(img_resized)
     model.draw(img, results, dw, dh)
-    
     cv2.imshow("result", img)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 
-if __name__ == '__main__':
+# Process a folder of images
+def process_folder(model, folder_path):
+    for filename in os.listdir(folder_path):
+        if filename.endswith(".jpg") or filename.endswith(".png"):
+            image_path = os.path.join(folder_path, filename)
+            process_image(model, image_path)
 
-    main( )
+# Process a video
+def process_video(model, video_path):
+    cap = cv2.VideoCapture(video_path)
+    while cap.isOpened():
+        ret, frame = cap.read()
+        if not ret:
+            break
+        img_resized, dw, dh = model.resize_and_pad(frame)
+        results = model.predict(img_resized)
+        model.draw(frame, results, dw, dh)
+        cv2.imshow("result", frame)
+        if cv2.waitKey(1) & 0xFF == ord('q'):
+            break
+    cap.release()
+    cv2.destroyAllWindows()
+
+
+def main():
+    args = make_parser().parse_args()
+
+    # Initialize YOLOv9 model (assuming xml openvino model)
+    model = Yolov9(args.model)
+
+    if args.data_path.endswith('.jpg') or args.data_path.endswith('.png'):
+        process_image(model, args.data_path)
+    elif os.path.isdir(args.data_path):
+        process_folder(model, args.data_path)
+    elif args.data_path.endswith('.mp4'):  # Add support for other video formats
+        process_video(model, args.data_path)
+    else:
+        print("Error: Unsupported file format")    
+
+if __name__ == "__main__":
+    main()
