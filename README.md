@@ -20,7 +20,7 @@ ovc is a command-line model converter that converts trained models in onnx or py
 
 **Python:**
 
-The following will install openvino with ovc api:
+The following will install openvino python with ovc api:
 
 ``` shell
 cd python
