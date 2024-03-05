@@ -70,10 +70,7 @@ def main( ):
     # Step 7. Retrieve inference results 
     output = infer_request.get_output_tensor()
     detections = output.data[0].T
-    print(detections.shape)
-    # detections : (84, 8400)
-
-
+    
     # Step 8. Postprocessing including NMS  
     boxes = []
     class_ids = []
