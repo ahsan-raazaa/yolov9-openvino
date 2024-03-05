@@ -58,6 +58,6 @@ python main.py --model=yolov9-c-converted.xml --data_path=test.mp4
 - 2023.3.0 openvino API
 - OpenCV
 
-## Acknowledgement
-Based on the following projects:
+## 🔗 Acknowledgement
+This project is based on the following projects:
 - https://github.com/dacquaviva/yolov5-openvino-cpp-python
