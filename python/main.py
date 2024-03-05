@@ -8,6 +8,22 @@ from openvino.runtime import Layout, Type
 import numpy as np
 import cv2
 
+coconame = [
+    "person",         "bicycle",    "car",           "motorcycle",    "airplane",     "bus",           "train",
+    "truck",          "boat",       "traffic light", "fire hydrant",  "stop sign",    "parking meter", "bench",
+    "bird",           "cat",        "dog",           "horse",         "sheep",        "cow",           "elephant",
+    "bear",           "zebra",      "giraffe",       "backpack",      "umbrella",     "handbag",       "tie",
+    "suitcase",       "frisbee",    "skis",          "snowboard",     "sports ball",  "kite",          "baseball bat",
+    "baseball glove", "skateboard", "surfboard",     "tennis racket", "bottle",       "wine glass",    "cup",
+    "fork",           "knife",      "spoon",         "bowl",          "banana",       "apple",         "sandwich",
+    "orange",         "broccoli",   "carrot",        "hot dog",       "pizza",        "donut",         "cake",
+    "chair",          "couch",      "potted plant",  "bed",           "dining table", "toilet",        "tv",
+    "laptop",         "mouse",      "remote",        "keyboard",      "cell phone",   "microwave",     "oven",
+    "toaster",        "sink",       "refrigerator",  "book",          "clock",        "vase",          "scissors",
+    "teddy bear",     "hair drier", "toothbrush" ]
+
+
+
 class Yolov9:
     def __init__(self, xml_model_path="./model/yolov9-c-converted.xml", conf=0.2, nms=0.4):
         # Step 1. Initialize OpenVINO Runtime core
@@ -34,6 +50,14 @@ class Yolov9:
         self.input_height = 640
         self.conf_thresh = conf
         self.nms_thresh = nms
+        self.colors = []
+
+        # Create random colors
+        np.random.seed(42)  # Setting seed for reproducibility
+
+        for i in range(len(coconame)):
+            color = tuple(np.random.randint(100, 256, size=3))
+            self.colors.append(color)
 
     def resize_and_pad(self, image):
 
@@ -100,16 +124,28 @@ class Yolov9:
 
             rx = img.shape[1] / (self.input_width - dw)
             ry = img.shape[0] / (self.input_height - dh)
-            box[0] = rx * box[0]
-            box[1] = ry * box[1]
-            box[2] = rx * box[2]
-            box[3] = ry * box[3]
+            box[0] = int(rx * box[0])
+            box[1] = int(ry * box[1])
+            box[2] = int(rx * box[2])
+            box[3] = int(ry * box[3])
 
             xmax = box[0] + box[2]
             ymax = box[1] + box[3]
-            img = cv2.rectangle(img, (int(box[0]), int(box[1])), (int(xmax), int(ymax)), (0, 255, 0), 3)
-            img = cv2.rectangle(img, (int(box[0]), int(box[1]) - 20), (int(xmax), int(box[1])), (0, 255, 0), cv2.FILLED)
-            img = cv2.putText(img, str(classId), (int(box[0]), int(box[1]) - 5), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 0))        
+
+            # Drawing detection box
+            print(self.colors[classId])
+            cv2.rectangle(img, (int(box[0]), int(box[1])), (int(xmax), int(ymax)), tuple(map(int, self.colors[classId])), 3)
+
+            # Detection box text
+            class_string = coconame[classId] + ' ' + str(confidence)[:4]
+            text_size, _ = cv2.getTextSize(class_string, cv2.FONT_HERSHEY_DUPLEX, 1, 2)
+            text_rect = (box[0], box[1] - 40, text_size[0] + 10, text_size[1] + 20)
+            cv2.rectangle(img, 
+                (int(text_rect[0]), int(text_rect[1])), 
+                (int(text_rect[0] + text_rect[2]), int(text_rect[1] + text_rect[3])), 
+                tuple(map(int, self.colors[classId])), cv2.FILLED)
+            cv2.putText(img, class_string, (int(box[0] + 5), int(box[1] - 10)), cv2.FONT_HERSHEY_DUPLEX, 1, (0, 0, 0), 2, cv2.LINE_AA)
+
 
 def main( ):
 
