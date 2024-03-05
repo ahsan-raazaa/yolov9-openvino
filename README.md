@@ -6,7 +6,7 @@ C++ and python implementation of [YOLOv9](https://github.com/WongKinYiu/yolov9) 
   <img src="imgs/result.jpg"/>
 </p>
 
-## Model
+## 🤖 Model
 
 1. Download the converted model: [yolov9-c-converted](https://drive.google.com/file/d/1eBs2zlPmPoa-K2N4enTG3srXmesKQyM9/view?usp=sharing)
 2. Convert your custom model:
