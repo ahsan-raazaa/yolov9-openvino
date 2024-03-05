@@ -41,18 +41,6 @@ make
 
 ## 🚀 Usage:
 
-**CPP:**
-``` shell
-yolov9-openvino-cpp.exe <xml model path> <data> <confidence threshold> <nms threshold>
-
-# infer an image
-yolov9-openvino-cpp.exe yolov9-c.engine test.jpg 
-# infer a folder(images)
-yolov9-openvino-cpp.exe yolov9-c.engine data
-# infer a video
-yolov9-openvino-cpp.exe yolov9-c.engine test.mp4 # the video path
-```
-
 **Python:**
 
 ``` shell
@@ -64,6 +52,18 @@ python main.py --model=yolov9-c-converted.xml --data_path=test.jpg
 python main.py --model=yolov9-c-converted.xml --data_path=data
 # infer a video
 python main.py --model=yolov9-c-converted.xml --data_path=test.mp4
+```
+
+**CPP:**
+``` shell
+yolov9-openvino-cpp.exe <xml model path> <data> <confidence threshold> <nms threshold>
+
+# infer an image
+yolov9-openvino-cpp.exe yolov9-c.engine test.jpg 
+# infer a folder(images)
+yolov9-openvino-cpp.exe yolov9-c.engine data
+# infer a video
+yolov9-openvino-cpp.exe yolov9-c.engine test.mp4 # the video path
 ```
 
 ## 🖥️ Requirement
