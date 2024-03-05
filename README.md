@@ -43,12 +43,14 @@ yolov9-openvino-cpp.exe yolov9-c.engine test.mp4 # the video path
 **Python:**
 
 ``` shell
+cd python
+
 # infer an image
-python yolov9_openvino.py --model=yolov9-c-converted.xml --data_path=test.jpg
+python main.py --model=yolov9-c-converted.xml --data_path=test.jpg
 # infer a folder(images)
-python yolov9_openvino.py --model=yolov9-c-converted.xml --data_path=data
+python main.py --model=yolov9-c-converted.xml --data_path=data
 # infer a video
-python yolov9_openvino.py --model=yolov9-c-converted.xml --data_path=test.mp4
+python main.py --model=yolov9-c-converted.xml --data_path=test.mp4
 ```
 
 ### Requirement
