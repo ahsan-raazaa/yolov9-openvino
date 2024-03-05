@@ -19,12 +19,14 @@ Note that this repository is only for model inference using openvino. Therefore,
 
 **Python:**
 ``` shell
-pip install openvino
+cd python
+pip install -r requirement.txt
 ```
 
 **CPP:**
 
-Follow this installation guide: [guide](https://docs.openvino.ai/2023.3/openvino_docs_install_guides_installing_openvino_from_archive_windows.html)
+1. Install openvino following [this installation guide](https://docs.openvino.ai/2023.3/openvino_docs_install_guides_installing_openvino_from_archive_windows.html)
+2. Cmake build [todo]
 
 ## 🚀 Usage:
 
