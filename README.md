@@ -30,7 +30,8 @@ pip install -r requirement.txt
 **CPP:**
 
 1. Install openvino following [this guide](https://docs.openvino.ai/2023.3/openvino_docs_install_guides_installing_openvino_from_archive_windows.html)
-2. Cmake build
+2. Modify your openvino and opencv paths in [CMakeLists.txt](https://github.com/spacewalk01/yolov9-openvino/blob/main/cpp/CMakeLists.txt)
+3. Build
 
 ``` shell
 cd cpp
