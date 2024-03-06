@@ -41,7 +41,7 @@ cmake ..
 make
 ```
 
-## 🚀 Inference:
+## 🚀 Inference
 
 **Python:**
 
