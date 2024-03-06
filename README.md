@@ -47,7 +47,7 @@ make
 
 Usage: 
 ``` shell
-python main.py --model=<your model> --data_path=<data path> --score_thr=<score threshold> --nms_thr=<nms threshold>
+python main.py --model=<model path> --data_path=<data path> --score_thr=<score> --nms_thr=<nms>
 ```
 
 Examples:
