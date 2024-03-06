@@ -9,7 +9,7 @@ C++ and python implementation of [YOLOv9](https://github.com/WongKinYiu/yolov9) 
 ## 🤖 Model
 
 - Download yolov9-c openvino model: [yolov9-c-converted](https://drive.google.com/file/d/1eBs2zlPmPoa-K2N4enTG3srXmesKQyM9/view?usp=sharing)
-- Or convert your custom model to openvino format:
+- Or convert your custom yolov9 model to openvino format:
 ``` shell
 ovc yolov9-c-converted.onnx --compress_to_fp16 True --input images[1,3,640,640]
 ```
