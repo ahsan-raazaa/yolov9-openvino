@@ -45,6 +45,12 @@ make
 
 **Python:**
 
+Usage: 
+``` shell
+python main.py --model=<your model> --data_path=<data path> --score_thr=<score threshold> --nms_thr=<nms threshold>
+```
+
+Examples:
 ``` shell
 # infer an image
 python main.py --model=yolov9-c-converted.xml --data_path=test.jpg
@@ -55,9 +61,14 @@ python main.py --model=yolov9-c-converted.xml --data_path=test.mp4
 ```
 
 **CPP:**
+
+Usage: 
 ``` shell
 yolov9-openvino-cpp.exe <xml model path> <data> <confidence threshold> <nms threshold>
+```
 
+Examples:
+``` shell
 # infer an image
 yolov9-openvino.exe yolov9-c-converted.xml test.jpg 
 # infer a folder(images)
