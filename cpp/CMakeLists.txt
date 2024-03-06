@@ -18,12 +18,12 @@ set(HEADERS
     yolov9_openvino.h
 )
 
-# Find and include OpenCV
+# Set your OpenCV path 
 set(OpenCV_DIR "C:\\opencv\\opencv49\\build")
 find_package(OpenCV REQUIRED)
 include_directories(${OpenCV_INCLUDE_DIRS})
 
-# Set OpenVINO path if not set in environment variables
+# Set your OpenVINO path 
 set(OPENVINO_DIR "C:\\Program Files (x86)\\Intel\\openvino_2023\\runtime")
 
 # Include TensorRT
