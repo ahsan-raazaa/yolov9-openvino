@@ -27,7 +27,7 @@ cd python
 pip install -r requirement.txt
 ```
 
-#### CPP
+#### C++
 
 1. Download [openvino](https://storage.openvinotoolkit.org/repositories/openvino/packages/2023.3/windows/) and install it following [this guide](https://docs.openvino.ai/2023.3/openvino_docs_install_guides_installing_openvino_from_archive_windows.html)
 2. Modify your openvino and opencv paths in [CMakeLists.txt](https://github.com/spacewalk01/yolov9-openvino/blob/main/cpp/CMakeLists.txt)
@@ -60,7 +60,7 @@ python main.py --model=yolov9-c-converted.xml --data_path=data
 python main.py --model=yolov9-c-converted.xml --data_path=test.mp4
 ```
 
-#### CPP
+#### C++
 
 Usage: 
 ``` shell
