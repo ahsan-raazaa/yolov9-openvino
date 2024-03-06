@@ -18,7 +18,7 @@ ovc yolov9-c-converted.onnx --compress_to_fp16 True --input images[1,3,640,640]
 
 ## ⚙️ Build
 
-### Python
+#### Python
 
 The following will install openvino python with ovc api:
 
@@ -27,7 +27,7 @@ cd python
 pip install -r requirement.txt
 ```
 
-### CPP
+#### CPP
 
 1. Download [openvino](https://storage.openvinotoolkit.org/repositories/openvino/packages/2023.3/windows/) and install it following [this guide](https://docs.openvino.ai/2023.3/openvino_docs_install_guides_installing_openvino_from_archive_windows.html)
 2. Modify your openvino and opencv paths in [CMakeLists.txt](https://github.com/spacewalk01/yolov9-openvino/blob/main/cpp/CMakeLists.txt)
@@ -43,7 +43,7 @@ make
 
 ## 🚀 Inference
 
-### Python
+#### Python
 
 Usage: 
 ``` shell
@@ -60,7 +60,7 @@ python main.py --model=yolov9-c-converted.xml --data_path=data
 python main.py --model=yolov9-c-converted.xml --data_path=test.mp4
 ```
 
-### CPP
+#### CPP
 
 Usage: 
 ``` shell
