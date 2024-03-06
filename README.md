@@ -59,11 +59,11 @@ python main.py --model=yolov9-c-converted.xml --data_path=test.mp4
 yolov9-openvino-cpp.exe <xml model path> <data> <confidence threshold> <nms threshold>
 
 # infer an image
-yolov9-openvino.exe yolov9-c.engine test.jpg 
+yolov9-openvino.exe yolov9-c-converted.xml test.jpg 
 # infer a folder(images)
-yolov9-openvino.exe yolov9-c.engine data
+yolov9-openvino.exe yolov9-c-converted.xml data
 # infer a video
-yolov9-openvino.exe yolov9-c.engine test.mp4 # the video path
+yolov9-openvino.exe yolov9-c-converted.xml test.mp4 # the video path
 ```
 
 ## 🖥️ Requirement
