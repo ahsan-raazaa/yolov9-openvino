@@ -18,7 +18,8 @@ ovc yolov9-c-converted.onnx --compress_to_fp16 True --input images[1,3,640,640]
 
 ## ⚙️ Build
 
-#### Python
+#### <a href="https://www.python.org/" title="Python"><img src="https://github.com/get-icon/geticon/raw/master/icons/python.svg" alt="Python" width="21px" height="21px"></a>
+Python
 
 The following will install openvino python with ovc api:
 
