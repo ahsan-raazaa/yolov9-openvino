@@ -21,7 +21,7 @@ ovc yolov9-c-converted.onnx --compress_to_fp16 True --input images[1,3,640,640]
 #### Python
 
 
-The following will install openvino python with ovc api:
+The following will install openvino python with `ovc` api:
 
 ``` shell
 cd python
