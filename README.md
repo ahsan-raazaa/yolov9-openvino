@@ -84,5 +84,5 @@ yolov9-openvino.exe yolov9-c-converted.xml test.mp4 # the video path
 
 ## 🔗 Acknowledgement
 This project is based on the following projects:
-- [yolov5-openvino](https://github.com/dacquaviva/yolov5-openvino-cpp-python)
-- [YOLOv9](https://github.com/WongKinYiu/yolov9)
+- [yolov5-openvino](https://github.com/dacquaviva/yolov5-openvino-cpp-python) - Example of using ultralytics YOLOv5 with Openvino in C++ and Python
+- [YOLOv9](https://github.com/WongKinYiu/yolov9) - YOLOv9: Learning What You Want to Learn Using Programmable Gradient Information
