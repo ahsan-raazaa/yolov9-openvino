@@ -13,7 +13,7 @@ C++ and python implementation of [YOLOv9](https://github.com/WongKinYiu/yolov9) 
 ``` shell
 ovc yolov9-c-converted.onnx --compress_to_fp16 True --input images[1,3,640,640]
 ```
-ovc is a command-line model converter that converts trained models in onnx or pytorch format to an OpenVINO model in bin, xml format.
+`ovc` is a command-line model converter that converts trained models in onnx or pytorch format to an OpenVINO model in bin, xml format.
 
 
 ## ⚙️ Build
