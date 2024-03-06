@@ -1,17 +1,41 @@
-add_executable(main main.cpp)
+cmake_minimum_required(VERSION 3.12)
+project(yolov9-openvino)
 
-target_link_libraries(main
-/opt/intel/openvino/extras/opencv/lib/libopencv_dnn.so
-/opt/intel/openvino/extras/opencv/lib/libopencv_core.so
-/opt/intel/openvino/extras/opencv/lib/libopencv_imgcodecs.so
-/opt/intel/openvino/extras/opencv/lib/libopencv_imgproc.so
-/opt/intel/openvino/runtime/lib/intel64/libopenvino.so
+# Set C++ standard
+set(CMAKE_CXX_STANDARD 17)
 
+
+# Include CUDA directories
+
+# Add source files
+set(SOURCES
+    main.cpp
+    yolov9_openvino.cpp
 )
 
-target_include_directories(main PUBLIC 
-/opt/intel/openvino/extras/opencv/include/
-/opt/intel/openvino/runtime/include/
-/opt/intel/openvino/runtime/include/ie/
+# Add headers
+set(HEADERS
+    yolov9_openvino.h
+)
 
+# Find and include OpenCV
+set(OpenCV_DIR "C:\\opencv\\opencv49\\build")
+find_package(OpenCV REQUIRED)
+include_directories(${OpenCV_INCLUDE_DIRS})
+
+# Set OpenVINO path if not set in environment variables
+set(OPENVINO_DIR "C:\\Program Files (x86)\\Intel\\openvino_2023\\runtime")
+
+# Include TensorRT
+include_directories(${OPENVINO_DIR}/include)
+link_directories(${OPENVINO_DIR}/lib/intel64/release)
+set(OPENVINO_LIBS openvino openvino_c)
+
+# Create an executable
+add_executable(${PROJECT_NAME} ${SOURCES} ${HEADERS})
+
+# Link libraries
+target_link_libraries(${PROJECT_NAME}
+    ${OpenCV_LIBS}
+    ${OPENVINO_LIBS}
 )
