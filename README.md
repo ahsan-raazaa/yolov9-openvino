@@ -1,4 +1,4 @@
-<h1 align="center"><span>YOLOv9-OpenVINO</span></h1>
+<h1 align="center"><span>YOLOv9-OpenVINO</span></h1> <img src="https://awesome.re/mentioned-badge-flat.svg"/>
 
 C++ and python implementation of [YOLOv9](https://github.com/WongKinYiu/yolov9) using Openvino Backend.
 
